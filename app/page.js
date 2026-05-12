@@ -3,7 +3,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import CloudHeading from "./CloudHeading";
 import catGun from "../assets/cat_gun.png";
+import skyBackground from "../assets/sky.png";
 
 export default function Home() {
   const router = useRouter();
@@ -52,7 +54,10 @@ export default function Home() {
   }
 
   return (
-    <main className="valentine-page">
+    <main
+      className="valentine-page"
+      style={{ "--valentine-sky": `url(${skyBackground.src})` }}
+    >
       <Image
         className={`cat-gun ${isNoHovered ? "cat-gun-visible" : ""}`}
         src={catGun}
@@ -62,7 +67,7 @@ export default function Home() {
       />
 
       <section className="proposal" aria-label="Valentine proposal">
-        <h1>Will you be my Valentines?</h1>
+        <CloudHeading />
 
         <div className="button-row">
           <button
