@@ -155,8 +155,8 @@ export default function CloudHeading() {
       baseContext.filter = "blur(2.2px)";
       baseContext.globalAlpha = 0.43;
       baseContext.lineWidth = Math.max(8, fontSize * 0.09);
-      baseContext.strokeStyle = "rgba(40, 103, 164, 0.5)";
-      baseContext.fillStyle = "rgba(55, 122, 184, 0.13)";
+      baseContext.strokeStyle = "rgba(255, 255, 255, 0.54)";
+      baseContext.fillStyle = "rgba(255, 255, 255, 0.24)";
 
       TITLE_LINES.forEach((line, index) => {
         const y = startY + index * lineHeight + fontSize * 0.025;
@@ -174,6 +174,8 @@ export default function CloudHeading() {
       TITLE_LINES.forEach((line, index) => {
         const y = startY + index * lineHeight;
 
+        baseContext.strokeStyle = "rgba(255, 255, 255, 0.72)";
+        baseContext.fillStyle = "rgba(255, 255, 255, 0.46)";
         baseContext.strokeText(line, width / 2, y);
         baseContext.fillText(line, width / 2, y);
       });

@@ -73,6 +73,7 @@ button {
   gap: 1.25rem;
   width: min(100%, 84rem);
   text-align: center;
+  transform: translateY(50px);
 }
 
 .cloud-heading {
@@ -91,7 +92,7 @@ button {
   align-content: center;
   justify-items: center;
   margin: 0;
-  color: rgba(255, 255, 255, 0.014);
+  color: rgba(255, 255, 255, 0.024);
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   font-size: clamp(5rem, 8.8vw, 9rem);
   font-style: italic;
@@ -100,12 +101,19 @@ button {
   line-height: 0.96;
   text-align: center;
   text-shadow:
-    0 0.035em 0 rgba(92, 121, 142, 0.012),
-    0.05em 0 0.12em rgba(255, 255, 255, 0.018);
+    0 0.035em 0 rgba(255, 255, 255, 0.026),
+    0.05em 0 0.12em rgba(255, 255, 255, 0.036);
 }
 
 .cloud-heading-text span {
   display: block;
+}
+
+.cloud-heading-text span:last-child {
+  color: rgba(255, 255, 255, 0.036);
+  text-shadow:
+    0 0.035em 0 rgba(255, 255, 255, 0.026),
+    0.05em 0 0.12em rgba(255, 255, 255, 0.036);
 }
 
 .cloud-heading-canvas {
@@ -251,7 +259,7 @@ button {
 .bird-letter-stack {
   position: absolute;
   top: clamp(-1.8rem, -2vw, -0.4rem);
-  left: clamp(-2.6rem, -3vw, -0.9rem);
+  left: clamp(-2.9rem, -3.5vw, -0.8rem);
   width: clamp(9rem, 20vw, 18rem);
 }
 
@@ -261,6 +269,14 @@ button {
   width: 100%;
   height: auto;
   user-select: none;
+}
+
+.letter-image {
+  position: relative;
+  z-index: 1;
+  transition:
+    filter 220ms ease,
+    transform 220ms ease;
 }
 
 .bird-image {
@@ -306,6 +322,109 @@ button {
 .letter-fallen:focus-visible .letter-image {
   filter: drop-shadow(0 0.35rem 0.65rem rgba(64, 42, 23, 0.28));
   transform: translateY(-0.1rem) scale(1.015);
+}
+
+.letter-click-cue {
+  position: absolute;
+  inset: 58% 48% 6% 7%;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateX(70px);
+}
+
+.letter-cue-particle {
+  position: absolute;
+  left: var(--cue-x);
+  top: var(--cue-y);
+  width: clamp(0.58rem, 0.96vw, 0.9rem);
+  height: clamp(0.58rem, 0.96vw, 0.9rem);
+  border-radius: 50%;
+  background: rgba(255, 255, 244, 0.98);
+  box-shadow:
+    0 0 0.38rem rgba(255, 255, 255, 0.96),
+    0 0 1rem rgba(255, 214, 112, 0.9),
+    0 0 1.45rem rgba(255, 124, 158, 0.38);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.55);
+  animation: letter-cue-pulse 2.7s ease-in-out infinite;
+  animation-delay: var(--cue-delay);
+}
+
+.letter-cue-particle::before,
+.letter-cue-particle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170%;
+  height: 28%;
+  border-radius: 999px;
+  background: rgba(255, 255, 250, 0.86);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.letter-cue-particle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.letter-cue-particle:nth-child(1) {
+  --cue-x: 20%;
+  --cue-y: 48%;
+  --cue-delay: 0ms;
+}
+
+.letter-cue-particle:nth-child(2) {
+  --cue-x: 55%;
+  --cue-y: 20%;
+  --cue-delay: 350ms;
+}
+
+.letter-cue-particle:nth-child(3) {
+  --cue-x: 80%;
+  --cue-y: 55%;
+  --cue-delay: 720ms;
+}
+
+.letter-cue-particle:nth-child(4) {
+  --cue-x: 46%;
+  --cue-y: 76%;
+  --cue-delay: 1050ms;
+}
+
+.letter-cue-particle:nth-child(5) {
+  --cue-x: 8%;
+  --cue-y: 78%;
+  --cue-delay: 1380ms;
+}
+
+.letter-cue-particle:nth-child(6) {
+  --cue-x: 34%;
+  --cue-y: 30%;
+  --cue-delay: 1720ms;
+}
+
+.letter-cue-particle:nth-child(7) {
+  --cue-x: 70%;
+  --cue-y: 84%;
+  --cue-delay: 2100ms;
+}
+
+@keyframes letter-cue-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+
+  22% {
+    opacity: 0.95;
+    transform: translate(-50%, -72%) scale(1);
+  }
+
+  48% {
+    opacity: 0.38;
+    transform: translate(-50%, -105%) scale(0.78);
+  }
 }
 
 .word-sequence {

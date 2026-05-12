@@ -210,6 +210,13 @@ export default function AnniversaryPage() {
           }}
         >
           <Image className="letter-image" src={letter} alt="" priority />
+          {letterState.phase === "fallen" && !sequenceStarted ? (
+            <span className="letter-click-cue" aria-hidden="true">
+              {Array.from({ length: 7 }).map((_, index) => (
+                <span className="letter-cue-particle" key={index} />
+              ))}
+            </span>
+          ) : null}
         </button>
       </div>
 
